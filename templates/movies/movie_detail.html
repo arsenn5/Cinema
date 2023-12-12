@@ -12,7 +12,10 @@
 <p>{{movie.director}}</p>
 <p>{{movie.actors}}</p>
 <p>{{movie.lang}}</p>
-<iframe src="{{movie.trailer_url}}" frameborder="0"></iframe>
-<iframe src="{{movie.movie_url}}" frameborder="0"></iframe>
+<iframe src="{{movie.trailer_url}}" frameborder="0">Смотреть трейлер</iframe>
+<p><a href="{{movie.movie_url}}">Смотреть фильм</a></p>
+<p><button><a href="/movies/{{movie.id}}/delete/">Удалить фильм</a></button></p>
+<button><a href="/movies/{{movie.id}}/review/">Оставить отзыв</a></button>
+
 </body>
 </html>
