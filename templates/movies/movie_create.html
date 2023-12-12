@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Movie Create</title>
-</head>
-<body>
+{% include 'layouts/header.html' %}
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit">Добавить фильм</button>
 </form>
-</body>
-</html>
+{% include 'layouts/footer.html' %}

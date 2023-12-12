@@ -1,0 +1,12 @@
+.column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.other{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

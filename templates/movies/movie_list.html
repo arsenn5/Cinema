@@ -1,21 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Movie List</title>
-</head>
-<body>
-<ul>
-    <li>
-        <h1>Movie List</h1>
-        <p><button><a href="/movies/create/">Добавить новый фильм</a></button></p>
-        {% for i in movies %}
-        <img src="{{i.image.url}}" alt="img" height="400" width="600">
-        <h2>{{i.title}}</h2>
-        <p>{{i.description}}</p>
-        <a href="/movies/{{i.id}}/">Подробнее</a>
-        <p>{% endfor %}</p>
-    </li>
-</ul>
-</body>
-</html>
+{% load static %}
+{% include 'layouts/header.html' %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<div class="other">
+    <h1>Movie List</h1><br>
+    <p>
+        <button><a href="/movies/create/">Добавить новый фильм</a></button>
+    </p>
+</div>
+
+<div class="column">
+    {% for i in movies %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{i.image.url}}" class="card-img-top" alt="img" height="200" width="750">
+        <div class="card-body">
+            <h5 class="{{i.title}}">Загаловок</h5>
+            <p class="{{i.description}}">Some quick example text to build on the card title.</p>
+            <a href="/movies/{{i.id}}/" class="btn btn-primary">Подробнее</a>
+        </div>
+    </div>
+    <p>{% endfor %}</p>
+</div>
+{% include 'layouts/footer.html' %}

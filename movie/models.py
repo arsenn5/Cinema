@@ -29,6 +29,6 @@ class Movie(models.Model):
         return self.title
 
 class Review(models.Model):
-    movie = models.ForeignKey(Movie, related_name="reviews")
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name="reviews")
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
