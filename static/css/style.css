@@ -3,9 +3,11 @@
     align-items: center;
     justify-content: center;
     gap: 1em;
+    flex-wrap: wrap;
 }
 
 .other{
+    text-align: center;
     margin-top: 1px;
     margin-bottom: 50px;
 }
