@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'movie',
-    'parser_app'
+    'parser_app',
+    'users'
 ]
 
 MIDDLEWARE = [
