@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'blog',
     'movie',
     'parser_app',
-    'users'
+    'users',
+    'cloth'
 ]
 
 MIDDLEWARE = [

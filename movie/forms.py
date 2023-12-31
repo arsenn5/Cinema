@@ -6,3 +6,7 @@ class MovieForm(forms.ModelForm):
     class Meta:
         model = Movie
         fields = "__all__"
+
+
+class ReviewForms(forms.Form):
+    content = forms.CharField()

@@ -26,12 +26,13 @@ def get_data(html, limit=5):
     for item in items[:limit]:
         title_name = item.find('div', class_="b-content__inline_item-link").get_text()
         title_url = URL + item.find('a').get('href')
-
+        description = item.find('div', class_="b-post__description").get_text()
         cover_div = item.find('div', class_="b-content__inline_item-cover")
         image_url = urljoin(URL, cover_div.find('img').get('src')) if cover_div and cover_div.find('img') else None
 
         rezka_films.append({
             "title_name": title_name,
+            "description": description,
             "title_url": title_url,
             "image": image_url
         })

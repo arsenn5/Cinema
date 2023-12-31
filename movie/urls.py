@@ -13,7 +13,7 @@ from .views import MovieListView, MovieDetailView, CreateMovieView, DeleteMovieV
 
 urlpatterns = [
     path('movies/', MovieListView.as_view()),
-    path('movies/<int:id>/', MovieDetailView.as_view()),
+    path('movies/<int:pk>/', MovieDetailView.as_view()),
     path('movies/create/', CreateMovieView.as_view()),
     path('movies/<int:id>/update/', UpdateMovieView.as_view()),
     path('movies/<int:id>/delete/', DeleteMovieView.as_view()),

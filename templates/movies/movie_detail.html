@@ -1,17 +1,26 @@
 {% include 'layouts/header.html' %}
 <center>
 <h1>Movie Detail</h1>
-<img src="{{object.image.url}}" alt="img" height="400" width="600">
-<h2>{{object.title}}</h2>
-<p>{{object.description}}</p>
-<p>{{object.genre}}</p>
-<p>{{object.director}}</p>
-<p>{{object.actors}}</p>
-<p>{{object.lang}}</p>
-<iframe src="{{object.trailer_url}}" frameborder="0">Смотреть трейлер</iframe>
-<p><a href="{{object.movie_url}}">Смотреть фильм</a></p>
-<p><button><a href="/movies/{{object.id}}/update/">Изменить фильм</a></button></p>
-<p><button><a href="/movies/{{object.id}}/delete/">Удалить фильм</a></button></p>
-<button><a href="/movies/{{object.id}}/review/">Оставить отзыв</a></button>
+<img src="{{movie.image.url}}" alt="img" height="400" width="600">
+<h2>{{movie.title}}</h2>
+<p>{{movie.description}}</p>
+<p>{{movie.genre}}</p>
+<p>{{movie.director}}</p>
+<p>{{movie.actors}}</p>
+<p>{{movie.lang}}</p>
+<iframe src="{{movie.trailer_url}}" frameborder="0">Смотреть трейлер</iframe>
+<p><a href="{{movie.movie_url}}">Смотреть фильм</a></p>
+<p><button><a href="/movies/{{movie.id}}/update/">Изменить фильм</a></button></p>
+<p><button><a href="/movies/{{movie.id}}/delete/">Удалить фильм</a></button></p>
+    <form action="/movies/{{ movie.id }}/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Add review">
+
+    </form>
+
+    {% for review in movie.reviews.all %}
+        <p>{{ review.content }}</p>
+    {% endfor %}
 </center>
 {% include 'layouts/footer.html' %}

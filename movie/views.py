@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
-from movie.forms import MovieForm
+from movie.forms import MovieForm, ReviewForms
 from movie.models import Movie, Review
 
 
@@ -19,17 +19,38 @@ class MovieListView(ListView):
 #     return render(request, 'movies/movie_list.html', {'movies': movies})
 
 
+# class MovieDetailView(DetailView):
+#     template_name = 'movies/movie_detail.html'
+#
+#     def get_object(self, **kwargs):
+#         movie_id = self.kwargs.get('id')
+#         return get_object_or_404(Movie, id=movie_id)
+
+
 class MovieDetailView(DetailView):
+    model = Movie
     template_name = 'movies/movie_detail.html'
+    context_object_name = 'movie'
 
-    def get_object(self, **kwargs):
-        movie_id = self.kwargs.get('id')
-        return get_object_or_404(Movie, id=movie_id)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['reviews'] = self.object.reviews.all()
+        context['form'] = ReviewForms()
+        return context
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = ReviewForms(data=request.POST)
 
-# def movie_detail_view(request, id):
-#     movie = get_object_or_404(Movie, id=id)
-#     return render(request, 'movies/movie_detail.html', {'movie': movie})
+        if form.is_valid():
+            Review.objects.create(
+                content=form.cleaned_data.get('content'),
+                movie=self.object
+            )
+
+        context = self.get_context_data()
+        context['form'] = form
+        return self.render_to_response(context)
 
 
 class CreateMovieView(CreateView):
@@ -89,6 +110,7 @@ class DeleteMovieView(DeleteView):
     def get_object(self, **kwargs):
         movie_id = self.kwargs.get('id')
         return get_object_or_404(Movie, id=movie_id)
+
 
 # def delete_movie_view(request, id):
 #     movie = get_object_or_404(Movie, id=id)
